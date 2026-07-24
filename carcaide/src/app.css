@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles for Carcaide */
+:global(body) {
+  font-family: 'Inter', sans-serif;
+  background-color: #f8f9fa;
+}
+
+/* Primary colors */
+.bg-primary-orange { background-color: #FF6B35; }
+.text-primary-orange { color: #FF6B35; }
+.border-primary-orange { border-color: #FF6B35; }
+
+.bg-primary-blue { background-color: #2E86C1; }
+.text-primary-blue { color: #2E86C1; }
+.border-primary-blue { border-color: #2E86C1; }
+
+/* Button styles */
+.btn-primary {
+  @apply bg-primary-orange text-white px-4 py-2 rounded-md hover:bg-orange-600 transition-colors;
+}
+
+.btn-secondary {
+  @apply bg-primary-blue text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors;
+}
+
+/* Card styles */
+.card {
+  @apply bg-white rounded-lg shadow-md p-4 mb-4;
+}
+
+/* Input styles */
+.input-field {
+  @apply w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-orange;
+}
+
+/* Navbar styles */
+.navbar {
+  @apply bg-white shadow-sm px-4 py-2;
+}
+
+/* Mobile menu */
+.mobile-menu {
+  @apply md:hidden;
+}
+
+/* Category grid */
+.category-grid {
+  @apply grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4;
+}
+
+/* Post card */
+.post-card {
+  @apply bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105;
+}
+
+/* Profile section */
+.profile-section {
+  @apply bg-white rounded-lg shadow-md p-6;
+}
