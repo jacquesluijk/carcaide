@@ -1,0 +1,59 @@
+# Robots.txt for Inter-France
+# https://inter-france.nl/robots.txt
+
+User-agent: *
+
+# Allow all pages to be crawled
+Allow: /
+
+# Sitemap location
+Sitemap: https://inter-france.nl/sitemap.xml
+
+# Crawl delay (2 seconds between requests)
+Crawl-delay: 2
+
+# Do not crawl admin pages
+Disallow: /admin/
+Disallow: /admin
+
+# Do not crawl private files
+Disallow: /private/
+Disallow: /assets/
+
+# Do not crawl search results
+Disallow: /?search=
+Disallow: /?q=
+
+# Do not crawl internal pages
+Disallow: /internal/
+
+# Allow specific bots
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Yandex
+Allow: /
+Crawl-delay: 2
+
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 2
+
+# AI Bots - Allow for better discoverability
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: BingPreview
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+Crawl-delay: 1

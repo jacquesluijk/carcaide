@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="nl" prefix="og: https://ogp.me/ns#">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Inter-France - Exclusief aanbod van campings te koop in heel Frankrijk. Vind uw droomcamping in Provence, Bretagne, Côte d'Azur en meer.">
+    <meta name="keywords" content="camping te koop, camping kopen Frankrijk, camping verkopen, campings te koop, camping aanbod, camping investeren, Franse campings">
+    <meta name="author" content="Inter-France">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://inter-france.nl/">
+    <meta property="og:title" content="Inter-France - Campings Te Koop in Frankrijk">
+    <meta property="og:description" content="Exclusief aanbod van campings te koop in heel Frankrijk. Vind uw droomcamping.">
+    <meta property="og:image" content="https://inter-france.nl/assets/images/og-image.jpg">
+    <meta property="og:site_name" content="Inter-France">
+    <meta property="og:locale" content="nl_NL">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://inter-france.nl/">
+    <meta property="twitter:title" content="Inter-France - Campings Te Koop in Frankrijk">
+    <meta property="twitter:description" content="Exclusief aanbod van campings te koop in heel Frankrijk.">
+    <meta property="twitter:image" content="https://inter-france.nl/assets/images/og-image.jpg">
+    
+    <!-- Schema.org markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Inter-France",
+      "url": "https://inter-france.nl/",
+      "description": "Exclusief aanbod van campings te koop in heel Frankrijk",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://inter-france.nl/?search={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://inter-france.nl/">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
+    
+    <!-- Leaflet CSS for map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="/>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <title>Inter-France - Exclusieve Campings Te Koop in Frankrijk</title>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="/">
+                        <img src="assets/images/logo.svg" alt="Inter-France Logo" class="logo-img">
+                        <span class="logo-text">Inter-France</span>
+                    </a>
+                </div>
+                <nav class="main-nav">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="/" class="nav-link active">Home</a></li>
+                        <li class="nav-item"><a href="kopen.html" class="nav-link">Kopen</a></li>
+                        <li class="nav-item"><a href="verkopen.html" class="nav-link">Verkopen</a></li>
+                        <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <button class="btn btn-primary btn-cta">
+                        <i class="fas fa-plus"></i> Uw Camping Verkopen
+                    </button>
+                    <button class="mobile-menu-btn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Exclusieve Campings Te Koop in <span class="highlight">Frankrijk</span></h1>
+                <p class="hero-subtitle">Vind uw droomcamping in alle regio's van Frankrijk. Van Provence tot Bretagne, van Côte d'Azur tot de Pyreneeën.</p>
+                <div class="hero-search">
+                    <form id="heroSearchForm" class="search-form">
+                        <div class="search-input-group">
+                            <select id="regionFilter" class="search-input search-select">
+                                <option value="">Alle Regio's</option>
+                            </select>
+                            <input type="text" id="cityFilter" class="search-input" placeholder="Plaats of departement...">
+                            <select id="priceFilter" class="search-input search-select">
+                                <option value="">Prijsrange</option>
+                                <option value="0-500000">€0 - €500.000</option>
+                                <option value="500000-1000000">€500.000 - €1.000.000</option>
+                                <option value="1000000-2000000">€1.000.000 - €2.000.000</option>
+                                <option value="2000000+">€2.000.000+</option>
+                            </select>
+                            <button type="submit" class="btn btn-primary btn-search">
+                                <i class="fas fa-search"></i> Zoeken
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <h2 class="section-title">Campings op de Kaart</h2>
+            <div class="map-container">
+                <div id="franceMap" class="map-leaflet"></div>
+                <div class="map-legend">
+                    <div class="legend-item">
+                        <span class="legend-color available"></span>
+                        <span>Beschikbaar</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color sold"></span>
+                        <span>Verkocht</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Results Section (hidden by default) -->
+    <section id="searchResultsSection" class="search-results-section" style="display: none;">
+        <div class="container">
+            <div class="search-results-header">
+                <h2 class="section-title">Zoekresultaten</h2>
+                <div class="results-count">
+                    <span id="resultsCount">0</span> campings gevonden
+                </div>
+                <button id="clearSearchBtn" class="btn btn-secondary">
+                    <i class="fas fa-times"></i> Zoekopdracht wissen
+                </button>
+            </div>
+            <div id="searchResultsGrid" class="campings-grid"></div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="why-choose-section">
+        <div class="container">
+            <h2 class="section-title">Waarom een Camping Kopen via Inter-France?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="feature-title">Exclusief Aanbod</h3>
+                    <p class="feature-text">Toegang tot campings die niet openbaar worden aangeboden. Onze netwerk in Frankrijk is uniek.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Betrouwbare Begeleiding</h3>
+                    <p class="feature-text">Ervaren makelaars die u begeleiden van begin tot eind. Juridische en financiële zekerheid.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="feature-title">Rendabele Investeringen</h3>
+                    <p class="feature-text">Wij selecteren alleen campings met bewezen rendement en groeipotentieel.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe-americas"></i>
+                    </div>
+                    <h3 class="feature-title">Lokale Kennis</h3>
+                    <p class="feature-text">Diepgaande kennis van de Franse markt, regelgeving en belastingen.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Campings List Section -->
+    <section class="campings-section">
+        <div class="container">
+            <h2 class="section-title">Beschikbare Campings</h2>
+            <div class="campings-container">
+                <div class="campings-grid" id="campingsGrid">
+                    <!-- Campings will be loaded dynamically -->
+                </div>
+                <aside class="sidebar">
+                    <div class="sidebar-card">
+                        <h3 class="sidebar-title">Uw Camping Verkopen?</h3>
+                        <p class="sidebar-text">Wij helpen u graag verder. Vul het formulier in en wij nemen binnen 24 uur contact op.</p>
+                        <a href="verkopen.html" class="btn btn-primary btn-full">
+                            <i class="fas fa-paper-plane"></i> Start Nu
+                        </a>
+                    </div>
+                    <div class="sidebar-card">
+                        <h3 class="sidebar-title">Nieuwsbrief</h3>
+                        <p class="sidebar-text">Blijf op de hoogte van nieuwe aanbiedingen.</p>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Uw e-mailadres" class="newsletter-input">
+                            <button type="submit" class="btn btn-secondary">
+                                <i class="fas fa-envelope"></i>
+                            </button>
+                        </form>
+                    </div>
+                    <div class="sidebar-card">
+                        <h3 class="sidebar-title">Snelle Links</h3>
+                        <ul class="quick-links">
+                            <li><a href="kopen.html">Alle Campings</a></li>
+                            <li><a href="#province">Provence</a></li>
+                            <li><a href="#bretagne">Bretagne</a></li>
+                            <li><a href="#cote-azur">Côte d'Azur</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Regions Section -->
+    <section class="popular-regions-section">
+        <div class="container">
+            <h2 class="section-title">Populaire Regio's</h2>
+            <div class="regions-grid" id="popularRegionsGrid">
+                <!-- Popular regions will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Lead Generation Section -->
+    <section class="lead-section">
+        <div class="container">
+            <div class="lead-card">
+                <div class="lead-content">
+                    <h2 class="lead-title">Wilt u een Camping Kopen of Verkopen?</h2>
+                    <p class="lead-text">Vul onderstaand formulier in en wij nemen binnen 24 uur contact met u op voor een vrijblijvend gesprek.</p>
+                    <form id="leadForm" class="lead-form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="leadName">Naam *</label>
+                                <input type="text" id="leadName" name="name" required placeholder="Uw naam">
+                            </div>
+                            <div class="form-group">
+                                <label for="leadEmail">E-mail *</label>
+                                <input type="email" id="leadEmail" name="email" required placeholder="Uw e-mailadres">
+                            </div>
+                            <div class="form-group">
+                                <label for="leadPhone">Telefoon</label>
+                                <input type="tel" id="leadPhone" name="phone" placeholder="Uw telefoonnummer">
+                            </div>
+                            <div class="form-group">
+                                <label for="leadInterest">Interesse *</label>
+                                <select id="leadInterest" name="interest" required>
+                                    <option value="">Selecteer...</option>
+                                    <option value="kopen">Ik wil een camping kopen</option>
+                                    <option value="verkopen">Ik wil mijn camping verkopen</option>
+                                    <option value="beide">Beide</option>
+                                </select>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="leadRegion">Geïnteresseerde Regio(s)</label>
+                                <input type="text" id="leadRegion" name="region" placeholder="Bijv. Provence, Bretagne, etc.">
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="leadBudget">Budget (indien van toepassing)</label>
+                                <select id="leadBudget" name="budget">
+                                    <option value="">Selecteer budget...</option>
+                                    <option value="0-500000">€0 - €500.000</option>
+                                    <option value="500000-1000000">€500.000 - €1.000.000</option>
+                                    <option value="1000000-2000000">€1.000.000 - €2.000.000</option>
+                                    <option value="2000000+">€2.000.000+</option>
+                                </select>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="leadMessage">Bericht</label>
+                                <textarea id="leadMessage" name="message" rows="4" placeholder="Uw bericht of vraag..."></textarea>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <p class="form-privacy">
+                                <input type="checkbox" id="leadPrivacy" name="privacy" required>
+                                <label for="leadPrivacy">Ik ga akkoord met de <a href="privacy.html">privacyvoorwaarden</a> *</label>
+                            </p>
+                            <button type="submit" class="btn btn-primary btn-large">
+                                <i class="fas fa-paper-plane"></i> Verzenden
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4 class="footer-title">Inter-France</h4>
+                    <p class="footer-text">Uw specialist in het kopen en verkopen van campings in Frankrijk.</p>
+                    <div class="footer-contact">
+                        <p><i class="fas fa-map-marker-alt"></i> Keizersgracht 123, 1015 AC Amsterdam</p>
+                        <p><i class="fas fa-phone"></i> <a href="tel:+31201234567">+31 (0)20 123 4567</a></p>
+                        <p><i class="fas fa-envelope"></i> <a href="mailto:info@inter-france.nl">info@inter-france.nl</a></p>
+                    </div>
+                    <div class="footer-social">
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-title">Snelle Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="kopen.html">Campings Kopen</a></li>
+                        <li><a href="verkopen.html">Uw Camping Verkopen</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="over-ons.html">Over Ons</a></li>
+                        <li><a href="faq.html">Veelgestelde Vragen</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-title">Populaire Regio's</h4>
+                    <ul class="footer-links" id="footerRegionsLinks">
+                        <!-- Popular regions links will be loaded dynamically -->
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-title">Nieuwsbrief</h4>
+                    <p class="footer-text">Blijf op de hoogte van nieuwe aanbiedingen.</p>
+                    <form class="footer-newsletter">
+                        <input type="email" placeholder="Uw e-mailadres" class="footer-input">
+                        <button type="submit" class="btn btn-secondary">
+                            <i class="fas fa-envelope"></i> Inschrijven
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-legal">
+                    <p>&copy; 2024 Inter-France. Alle rechten voorbehouden.</p>
+                    <ul class="legal-links">
+                        <li><a href="privacy.html">Privacybeleid</a></li>
+                        <li><a href="cookies.html">Cookiebeleid</a></li>
+                        <li><a href="algemene-voorwaarden.html">Algemene Voorwaarden</a></li>
+                        <li><a href="sitemap.xml">Sitemap</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="></script>
+    
+    <!-- Custom JS -->
+    <script src="js/data.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
