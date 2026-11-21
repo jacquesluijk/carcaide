@@ -6,6 +6,7 @@ const path = require('path');
 const crypto = require('crypto');
 
 const PORT = Number(process.env.PORT || 3000);
+const HOST = process.env.HOST || '127.0.0.1';
 const INVITE_CODE = process.env.INVITE_CODE || 'BUURT-2025';
 const ROOT = __dirname;
 const PUBLIC_DIR = path.join(ROOT, 'public');
@@ -461,7 +462,8 @@ const server = http.createServer(async (req, res) => {
   }
 });
 
-server.listen(PORT, () => {
-  console.log(`BuurtMarkt draait op http://localhost:${PORT}`);
+server.listen(PORT, HOST, () => {
+  console.log(`BuurtMarkt draait op http://${HOST}:${PORT}`);
   console.log(`Uitnodigingscode: ${INVITE_CODE} (zet INVITE_CODE in de omgeving om te wijzigen)`);
+  if (HOST === '127.0.0.1') console.log('Alleen bereikbaar op deze computer (veilig voor lokaal testen). Zet HOST=0.0.0.0 om vanaf andere apparaten in je netwerk te bereiken.');
 });

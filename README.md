@@ -20,6 +20,29 @@ Open daarna `http://localhost:3000` in je browser.
 
 Online zetten op een Plesk-subdomein (incl. 404-troubleshooting): zie [PLESK.md](PLESK.md).
 
+### Veilig lokaal testen op je eigen computer
+
+Standaard bindt de server alleen op `127.0.0.1` — dan is de app **alleen op jouw
+computer** bereikbaar, niet via het netwerk of internet. Zo test je veilig:
+
+```bash
+git clone -b vibe/buurtmarkt-21f085 https://github.com/jacquesluijk/carcaide.git
+cd carcaide && npm start    # draait op http://localhost:3000
+```
+
+Alleen vanaf een ander apparaat in je eigen Wi-Fi (bv. je telefoon) testen?
+Zet dan expres `HOST=0.0.0.0` en gebruik het interne IP van je computer:
+
+```bash
+HOST=0.0.0.0 npm start      # Windows: ipconfig | Mac/Linux: ip addr
+# telefoon opzelfde Wi-Fi: http://<intern-ip>:3000
+```
+
+Waarschuwing: doe dit alleen op een vertrouwd thuisnetwerk met je firewall aan,
+forward nooit poort 3000 in je router, en gebruik het niet op openbare Wi-Fi.
+Let op: de PWA ("zet op beginscherm") werkt alleen via HTTPS, dus voor het testen
+van de app-installatie op je telefoon heb je het Plesk-subdomein met Let's Encrypt nodig.
+
 Omgevingenvariabelen:
 
 - `PORT` — poort (standaard 3000)

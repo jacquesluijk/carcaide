@@ -39,7 +39,8 @@ Dit moet **per subdomein** (dus niet alleen voor het hoofddomein):
 
 Plesk start de app via Passenger en geeft de poort door via de omgevingsvariabele
 `PORT`; `server.js` luistert daarop (`process.env.PORT || 3000`). Er zijn geen
-npm-packages nodig.
+npm-packages nodig. De server bindt standaard op `127.0.0.1` — dat is hier correct,
+want de nginx/Apache-proxy van Plesk draait op dezelfde machine.
 
 ## Stap 3 — HTTPS aanzetten (verplicht voor de PWA)
 
