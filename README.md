@@ -18,6 +18,8 @@ npm start
 
 Open daarna `http://localhost:3000` in je browser.
 
+Online zetten op een Plesk-subdomein (incl. 404-troubleshooting): zie [PLESK.md](PLESK.md).
+
 Omgevingenvariabelen:
 
 - `PORT` — poort (standaard 3000)
