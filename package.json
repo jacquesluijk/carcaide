@@ -1,0 +1,14 @@
+{
+  "name": "buurtmarkt",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Mini marktplaats voor een besloten gemeenschap (PWA)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "icons": "node tools/make-icons.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
