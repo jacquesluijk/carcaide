@@ -65,11 +65,18 @@ Ga dit in deze volgorde na:
 
 ## Foto-uploads groter dan ~1 MB werken niet
 
-Subdomein → *Apache & nginx-instellingen* → **Aanvullende nginx-instructies**:
+Subdomein → *Apache & nginx-instellingen* (de pagina van het subdomein zelf — **niet** de
+serverbrede "Algemene Apache-instellingen") → scroll naar beneden → sectie
+**Aanvullende nginx-instructies** → klik in het tekstvak en plak:
 
 ```nginx
 client_max_body_size 20m;
 ```
+
+→ OK/Toepassen.
+
+Is er geen nginx-sectie (alleen Apache)? Gebruik dan de sectie **Aanvullende
+Apache-instructies** met: `LimitRequestBody 20971520` (20 MB in bytes).
 
 ## Na elke nieuwe Git-pull
 
